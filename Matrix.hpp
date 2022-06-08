@@ -52,12 +52,20 @@ public:
     Matrix operator+(const Matrix& mat)
     {
         Matrix tmp(m_n, mat.m_m);
-        for (int i = 0; i < m_n; i++)
+        if (m_m != mat.m_m && m_n != mat.m_n)
         {
-            for (int j = 0; j < m_m; j++)
+            std::cout << "matrices have a different type " << std::endl;
+        }
+        else
+        {
+            for (int i = 0; i < m_n; i++)
             {
-                tmp.m_mat[i][j] = m_mat[i][j] + mat.m_mat[i][j];
+                for (int j = 0; j < m_m; j++)
+                {
+                    tmp.m_mat[i][j] = m_mat[i][j] + mat.m_mat[i][j];
+                }
             }
+            
         }
         return tmp;
     }
@@ -191,7 +199,24 @@ public:
         }
 
         return tmp;
+
     }
+
+    void Matrix::linear_dependence()
+    {
+        double det = 0;
+        det = DET();
+        if (det == 0)
+        {
+            std::cout << "dependent vectors" << std::endl;
+        }
+        else
+        {
+            std::cout << "not dependent vectors" << std::endl;
+        }
+
+    }
+
     Matrix operator%(const Matrix& mat)
     {
         const double eps = 0.00001;
@@ -226,7 +251,7 @@ public:
             if (max < eps)
             {
                 // нет ненулевых диагональных элементов
-                std::cout << "Решение получить невозможно из-за нулевого столбца " << std::endl;
+                std::cout << "The solution cannot be obtained because of zero values " << std::endl;
                 return *this;
             }
 
