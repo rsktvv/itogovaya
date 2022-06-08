@@ -192,6 +192,77 @@ public:
 
         return tmp;
     }
+    Matrix operator%(const Matrix& mat)
+    {
+        const double eps = 0.00001;
+        double max = 0;
+        int index;
+        int k = 0;
+        double* x = new double[m_n];
+
+        for (int i = 0; i < m_n; i++)
+        {
+            for (int j = 0; j < m_m; j++)
+            {
+                std::cout << m_mat[i][j] << "*x" << j;
+                if (j < m_m - 1)
+                    std::cout << " + ";
+            }
+            std::cout << " = " << mat.m_mat[i][0] << std::endl;
+        }
+
+        while (k < m_n)
+        {
+            max = abs(m_mat[k][k]);
+            index = k;
+            for (int i = k + 1; i < m_n - 1; i++)
+            {
+                if (abs(m_mat[i][k]) > max)
+                {
+                    max = abs(m_mat[i][k]);
+                    index = i;
+                }
+            }
+            if (max < eps)
+            {
+                // нет ненулевых диагональных элементов
+                std::cout << "Решение получить невозможно из-за нулевого столбца " << std::endl;
+                return *this;
+            }
+
+            for (int j = 0; j < m_n; j++)
+            {
+                double temp = m_mat[k][j];
+                m_mat[k][j] = m_mat[index][j];
+                m_mat[index][j] = temp;
+            }
+
+            for (int i = k; i < m_n; i++)
+            {
+                double temp = m_mat[i][k];
+                if (abs(temp) < eps)
+                    continue;
+                for (int j = 0; j < m_n; j++)
+                    m_mat[i][j] = m_mat[i][j] / temp;
+                mat.m_mat[i][0] = mat.m_mat[i][0] / temp;
+                if (i == k)
+                    continue;
+                for (int j = 0; j < m_n; j++)
+                    m_mat[i][j] = m_mat[i][j] - m_mat[k][j];
+                mat.m_mat[i][0] = mat.m_mat[i][0] - mat.m_mat[k][0];
+            }
+            k++;
+        }
+        for (k = m_n - 1; k >= 0; k--)
+        {
+            x[k] = mat.m_mat[k][0];
+            for (int i = 0; i < k; i++)
+                mat.m_mat[i][0] = mat.m_mat[i][0] - m_mat[i][k] * x[k];
+        }
+        for (int i = 0; i < m_n; i++)
+            std::cout << "x" << i << " = " << x[i] << std::endl;
+        return *this;
+    }
 
     friend std::istream& operator>>(std::istream& in, Matrix& mat);
     friend std::ostream& operator<<(std::ostream& out, const Matrix& mat);
