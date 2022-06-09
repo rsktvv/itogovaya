@@ -55,6 +55,12 @@ public:
         if (m_m != mat.m_m && m_n != mat.m_n)
         {
             std::cout << "matrices have a different type " << std::endl;
+            return mat;
+        }
+        if (m_m != mat.m_m && m_n != mat.m_n)
+        {
+            std::cout << "matrices have a different type " << std::endl;
+            return mat;
         }
         else
         {
@@ -76,6 +82,7 @@ public:
         if (m_m != mat.m_m && m_n != mat.m_n)
         {
             std::cout << "matrices have a different type " << std::endl;
+            return mat;
         }
         else
         {

@@ -11,7 +11,7 @@ void Output()
 	std::cout << "Press 6 for finding the reverse matrix" << std::endl;
 	std::cout << "Press 7 for finding the transposition matrix" << std::endl;
 	std::cout << "Press 8 for findint the determinant for 2x2 or 3x3 type matrix" << std::endl;
-    std::cout << "Press 9 for findint the determinant for 2x2 or 3x3 type matrix" << std::endl;
+    std::cout << "Press 9 for findint the rang for 2x2 or 3x3 type matrix" << std::endl;
 
 }
 
