@@ -24,7 +24,7 @@ int main()
 
 	while (p != 0)
 	{
-		if ((p > 8) && (p < 0))
+		if ((p > 9) && (p < 0))
 		{
 			Output();
 		}
@@ -190,7 +190,6 @@ int main()
             Output();
             std::cin >> p;
         }
-
 	}
 	return 0;
 }
