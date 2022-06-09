@@ -202,6 +202,73 @@ public:
 
     }
 
+    int Matrix::Rang()
+    {
+        int rang = 0;
+        int k = 0;
+        int l = 0;
+        int g = 0;
+
+        double det = DET();
+
+        for (int i = 0; i < m_n; i++)
+        {
+            for (int j = 0; j < m_m; j++)
+            {
+                if (m_mat[i][j] == 0)
+                {
+                    k++;
+                }
+            }
+        }
+        if (k == m_m*m_n)
+        {
+            rang = 0;
+        }
+        else
+        {
+            if (((m_n = 1) && (m_m != 1)) || ((m_m = 1) && (m_n != 1)) || (m_n = 1) && (m_m = 1))
+            {
+                rang = 1;
+            }
+
+            if ((m_n = m_m) && (m_n == 2))
+            {
+                if (det == 0)
+                {
+                    rang = 1;
+                }
+                else
+                {
+                    rang = 2;
+                }
+            }
+
+            if ((m_n = m_m) && (m_n == 3))
+            {
+
+                g = m_mat[0][0] * m_mat[1][1] - m_mat[0][1] * m_mat[1][0];
+                if (g == 0)
+                {
+                    rang = 1;
+                }
+                else
+                {
+                    l = det;
+                    if (l == 0)
+                    {
+                        rang = 2;
+                    }
+                    else
+                    {
+                        rang = 3;
+                    }
+                }
+            }
+        }
+        return rang;
+    }
+
     void Matrix::linear_dependence()
     {
         double det = 0;
@@ -250,7 +317,7 @@ public:
             }
             if (max < eps)
             {
-                // нет ненулевых диагональных элементов
+                // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                 std::cout << "The solution cannot be obtained because of zero values " << std::endl;
                 return *this;
             }
