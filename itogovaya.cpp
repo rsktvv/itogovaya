@@ -11,6 +11,8 @@ void Output()
 	std::cout << "Press 6 for finding the reverse matrix" << std::endl;
 	std::cout << "Press 7 for finding the transposition matrix" << std::endl;
 	std::cout << "Press 8 for findint the determinant for 2x2 or 3x3 type matrix" << std::endl;
+    std::cout << "Press 9 for findint the determinant for 2x2 or 3x3 type matrix" << std::endl;
+
 }
 
 int main()
@@ -171,22 +173,24 @@ int main()
 			std::cin >> p;
 		}
 
-		if (p == 8)
-		{
-			std::cout << "The number of lines and columns of matrix A: " << std::endl;
-			std::cin >> n >> m;
 
-			Matrix A(n, m);
-			std::cout << "Type A matrix: " << std::endl;
-			std::cin >> A;
+        if (p == 9)
+        {
+            std::cout << "The number of lines and columns of matrix A up to matrix 3x3: " << std::endl;
+            std::cin >> n >> m;
 
-			std::cout << '\n';
-			std::cout << A.DET(); 
-			std::cout << '\n';
+            Matrix A(n, m);
+            std::cout << "Type A matrix: " << std::endl;
+            std::cin >> A;
 
-			Output();
-			std::cin >> p;
-		}
+            std::cout << '\n';
+            std::cout << A.Rang();
+            std::cout << '\n';
+
+            Output();
+            std::cin >> p;
+        }
+
 	}
 	return 0;
 }
