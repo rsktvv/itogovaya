@@ -52,11 +52,7 @@ public:
     Matrix operator+(const Matrix& mat)
     {
         Matrix tmp(m_n, mat.m_m);
-        if (m_m != mat.m_m && m_n != mat.m_n)
-        {
-            std::cout << "matrices have a different type " << std::endl;
-            return mat;
-        }
+  
         if (m_m != mat.m_m && m_n != mat.m_n)
         {
             std::cout << "matrices have a different type " << std::endl;
